@@ -14,6 +14,7 @@ struct BannerToastOverlay: View {
                         title: payload.title,
                         message: payload.message
                     )
+                    .shadow(color: BrandTheme.ink.opacity(0.15), radius: 16, y: 10)
                 }
                 .buttonStyle(.plain)
                 .padding(.horizontal, 16)

@@ -50,7 +50,19 @@ struct ChatView: View {
                 onRecordVoiceNote: sendVoiceNote
             )
         }
-        .background(elderStylingBackground)
+        .background(
+            isElderViewer
+                ? LinearGradient(
+                    colors: [Color.white, Color(red: 0.99, green: 0.98, blue: 0.96)],
+                    startPoint: .top,
+                    endPoint: .bottom
+                )
+                : LinearGradient(
+                    colors: [BrandTheme.cream, Color(red: 1.00, green: 0.98, blue: 0.96)],
+                    startPoint: .top,
+                    endPoint: .bottom
+                )
+        )
         .dynamicTypeSize(isElderViewer ? .accessibility2 : .large)
         .overlay {
             if let guideMessage {
@@ -189,8 +201,12 @@ struct ChatView: View {
             .frame(maxWidth: .infinity)
             .padding(.vertical, 6)
             .background(
-                Capsule().fill(Color(.tertiarySystemBackground).opacity(0.9))
+                Capsule().fill(Color.white.opacity(0.95))
             )
+            .overlay(
+                Capsule().stroke(Color.primary.opacity(0.06), lineWidth: 1)
+            )
+            .shadow(color: .black.opacity(0.05), radius: 6, y: 3)
             .padding(.horizontal, 40)
     }
 
@@ -294,8 +310,9 @@ struct ChatView: View {
                 )
                 .overlay(
                     RoundedRectangle(cornerRadius: 22, style: .continuous)
-                        .stroke(isElderViewer ? Color.primary : BrandTheme.jade.opacity(0.4), lineWidth: 2)
+                        .stroke(isElderViewer ? Color.primary.opacity(0.08) : BrandTheme.jade.opacity(0.4), lineWidth: 1)
                 )
+                .shadow(color: BrandTheme.ink.opacity(0.12), radius: 16, y: 10)
                 .padding(16)
             }
         }

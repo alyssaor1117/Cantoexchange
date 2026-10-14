@@ -22,7 +22,14 @@ struct LoginView: View {
             .padding(.top, 12)
             .padding(.bottom, 32)
         }
-        .background(BrandTheme.cream.ignoresSafeArea())
+        .background(
+            LinearGradient(
+                colors: [BrandTheme.cream, Color(red: 1.00, green: 0.98, blue: 0.96)],
+                startPoint: .top,
+                endPoint: .bottom
+            )
+            .ignoresSafeArea()
+        )
         .scrollDismissesKeyboard(.interactively)
     }
 
@@ -38,8 +45,9 @@ struct LoginView: View {
                         .background(.white.opacity(0.2), in: RoundedRectangle(cornerRadius: 14, style: .continuous))
 
                     Text(BrandTheme.appTitle)
-                        .font(.largeTitle.weight(.heavy))
-                        .foregroundStyle(.white)
+                    .font(.largeTitle.weight(.heavy))
+                    .tracking(1.2)
+                    .foregroundStyle(.white)
 
                     Text(BrandTheme.appTagline)
                         .font(.subheadline)
@@ -53,6 +61,7 @@ struct LoginView: View {
                 .padding(22)
             }
             .frame(height: 260)
+            .shadow(color: BrandTheme.jadeDeep.opacity(0.25), radius: 20, y: 12)
         }
     }
 
@@ -84,12 +93,13 @@ struct LoginView: View {
                     store.completeLogin()
                 } label: {
                     Label("Send Verification Code", systemImage: "message.fill")
-                        .font(.headline)
-                        .frame(maxWidth: .infinity)
-                        .padding(.vertical, 14)
+                    .font(.headline)
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 14)
                 }
                 .buttonStyle(.borderedProminent)
                 .tint(BrandTheme.jade)
+                .shadow(color: BrandTheme.jade.opacity(0.25), radius: 10, y: 6)
 
                 Text("Prototype: authentication is bypassed. Tapping the button goes straight to language onboarding.")
                     .font(.caption)

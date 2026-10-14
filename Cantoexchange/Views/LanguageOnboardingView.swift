@@ -15,7 +15,14 @@ struct LanguageOnboardingView: View {
             .padding(.horizontal, 20)
             .padding(.bottom, 32)
         }
-        .background(BrandTheme.cream.ignoresSafeArea())
+        .background(
+            LinearGradient(
+                colors: [BrandTheme.cream, Color(red: 1.00, green: 0.98, blue: 0.96)],
+                startPoint: .top,
+                endPoint: .bottom
+            )
+            .ignoresSafeArea()
+        )
     }
 
     private var progressHeader: some View {
@@ -105,11 +112,12 @@ struct LanguageOnboardingView: View {
             }
             .padding(14)
             .frame(maxWidth: .infinity, alignment: .leading)
-            .background(Color(.secondarySystemBackground), in: RoundedRectangle(cornerRadius: 16, style: .continuous))
+            .background(Color.white, in: RoundedRectangle(cornerRadius: 16, style: .continuous))
             .overlay(
                 RoundedRectangle(cornerRadius: 16, style: .continuous)
-                    .stroke(isSelected ? BrandTheme.jade : Color.primary.opacity(0.06), lineWidth: isSelected ? 2 : 1)
+                    .stroke(isSelected ? BrandTheme.jade : Color.primary.opacity(0.05), lineWidth: isSelected ? 2 : 1)
             )
+            .shadow(color: .black.opacity(isSelected ? 0.1 : 0.05), radius: 8, y: 4)
         }
         .buttonStyle(.plain)
         .accessibilityAddTraits(isSelected ? [.isButton, .isSelected] : .isButton)
@@ -199,6 +207,7 @@ struct LanguageOnboardingView: View {
         .tint(BrandTheme.jade)
         .disabled(store.fluencyChoice == nil)
         .opacity(store.fluencyChoice == nil ? 0.5 : 1)
+        .shadow(color: store.fluencyChoice == nil ? .clear : BrandTheme.jade.opacity(0.2), radius: 10, y: 6)
     }
 
     private var backButton: some View {

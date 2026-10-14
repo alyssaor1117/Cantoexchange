@@ -9,7 +9,7 @@ struct ConversationRequestCard: View {
 
     var body: some View {
         CardSurface {
-            VStack(alignment: .leading, spacing: 14) {
+            VStack(alignment: .leading, spacing: 16) {
                 header
                 messageBlock
                 HStack(spacing: 8) {
@@ -31,7 +31,7 @@ struct ConversationRequestCard: View {
                 }
                 Text("Preferred time: \(request.preferredTimeText)")
                     .font(.subheadline)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(BrandTheme.ink.opacity(0.8))
                 actions
             }
         }
@@ -73,7 +73,11 @@ struct ConversationRequestCard: View {
             .fixedSize(horizontal: false, vertical: true)
             .padding(12)
             .frame(maxWidth: .infinity, alignment: .leading)
-            .background(Color(.tertiarySystemBackground), in: RoundedRectangle(cornerRadius: 12, style: .continuous))
+            .background(Color(red: 0.99, green: 0.97, blue: 0.96), in: RoundedRectangle(cornerRadius: 12, style: .continuous))
+            .overlay(
+                RoundedRectangle(cornerRadius: 12, style: .continuous)
+                    .stroke(Color.primary.opacity(0.05), lineWidth: 1)
+            )
     }
 
     @ViewBuilder
@@ -90,6 +94,7 @@ struct ConversationRequestCard: View {
                     }
                     .buttonStyle(.borderedProminent)
                     .tint(BrandTheme.jade)
+                    .shadow(color: BrandTheme.jade.opacity(0.2), radius: 8, y: 4)
 
                     Button(action: onDecline) {
                         Label("Decline", systemImage: "xmark")
@@ -113,6 +118,7 @@ struct ConversationRequestCard: View {
                 }
                 .buttonStyle(.borderedProminent)
                 .tint(BrandTheme.jade)
+                .shadow(color: BrandTheme.jade.opacity(0.2), radius: 8, y: 4)
 
                 messageButton
             }

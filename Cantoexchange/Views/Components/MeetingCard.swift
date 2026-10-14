@@ -27,9 +27,9 @@ struct MeetingCard: View {
 
     var body: some View {
         CardSurface {
-            VStack(alignment: .leading, spacing: 12) {
+            VStack(alignment: .leading, spacing: 14) {
                 topRow
-                Divider().opacity(0.4)
+                Divider().opacity(0.25)
                 detailRows
                 actions
             }
@@ -114,6 +114,7 @@ struct MeetingCard: View {
                         }
                         .buttonStyle(.borderedProminent)
                         .tint(BrandTheme.jade)
+                        .shadow(color: BrandTheme.jade.opacity(0.2), radius: 8, y: 4)
                     } else {
                         Button(action: onOpenDirections) {
                             Label("Details", systemImage: "info.circle.fill")
@@ -123,6 +124,7 @@ struct MeetingCard: View {
                         }
                         .buttonStyle(.borderedProminent)
                         .tint(BrandTheme.jade)
+                        .shadow(color: BrandTheme.jade.opacity(0.2), radius: 8, y: 4)
                     }
 
                     Button(action: onMessage) {

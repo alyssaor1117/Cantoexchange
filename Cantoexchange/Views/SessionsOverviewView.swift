@@ -62,7 +62,13 @@ struct SessionsOverviewView: View {
             .padding(.horizontal, 16)
             .padding(.bottom, 32)
         }
-        .background(BrandTheme.cream)
+        .background(
+            LinearGradient(
+                colors: [BrandTheme.cream, Color(red: 1.00, green: 0.98, blue: 0.96)],
+                startPoint: .top,
+                endPoint: .bottom
+            )
+        )
         .scrollIndicators(.hidden)
         .navigationTitle("My Sessions")
         .navigationBarTitleDisplayMode(.inline)
@@ -150,7 +156,11 @@ struct SessionsOverviewView: View {
         }
         .frame(maxWidth: .infinity)
         .padding(.vertical, 10)
-        .background(Color(.tertiarySystemBackground), in: RoundedRectangle(cornerRadius: 12, style: .continuous))
+        .background(Color.white, in: RoundedRectangle(cornerRadius: 12, style: .continuous))
+        .overlay(
+            RoundedRectangle(cornerRadius: 12, style: .continuous)
+                .stroke(Color.primary.opacity(0.05), lineWidth: 1)
+        )
     }
 
     private var scopePicker: some View {

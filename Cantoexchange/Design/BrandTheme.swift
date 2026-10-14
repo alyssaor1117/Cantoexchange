@@ -5,7 +5,7 @@ enum BrandTheme {
     static let jadeDeep = Color(red: 0.03, green: 0.30, blue: 0.27)
     static let lantern = Color(red: 0.85, green: 0.24, blue: 0.20)
     static let clay = Color(red: 0.87, green: 0.47, blue: 0.22)
-    static let cream = Color(red: 0.98, green: 0.96, blue: 0.92)
+    static let cream = Color(red: 1.00, green: 0.98, blue: 0.94)
     static let ink = Color(red: 0.10, green: 0.11, blue: 0.13)
     static let slate = Color(red: 0.36, green: 0.39, blue: 0.43)
 
@@ -54,7 +54,7 @@ struct HeroCardBackground: View {
 }
 
 struct CardSurface<Content: View>: View {
-    var padding: CGFloat = 16
+    var padding: CGFloat = 18
     @ViewBuilder var content: Content
 
     var body: some View {
@@ -63,12 +63,13 @@ struct CardSurface<Content: View>: View {
             .frame(maxWidth: .infinity, alignment: .leading)
             .background(
                 RoundedRectangle(cornerRadius: 20, style: .continuous)
-                    .fill(Color(.secondarySystemBackground))
+                    .fill(Color.white)
             )
             .overlay(
                 RoundedRectangle(cornerRadius: 20, style: .continuous)
-                    .stroke(Color.primary.opacity(0.06), lineWidth: 1)
+                    .stroke(Color.primary.opacity(0.05), lineWidth: 1)
             )
+            .shadow(color: BrandTheme.ink.opacity(0.08), radius: 14, y: 8)
     }
 }
 

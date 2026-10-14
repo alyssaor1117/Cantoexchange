@@ -8,14 +8,15 @@ struct MentorCard: View {
 
     var body: some View {
         CardSurface {
-            VStack(alignment: .leading, spacing: 14) {
+            VStack(alignment: .leading, spacing: 16) {
                 header
-                Divider().opacity(0.4)
+                Divider().opacity(0.25)
                 FluencyBadge(fluency: mentor.fluency)
                 TopicTagRow(topics: mentor.topics, limit: 3)
                 Text(mentor.bio)
                     .font(.subheadline)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(BrandTheme.ink.opacity(0.8))
+                    .lineSpacing(2)
                     .fixedSize(horizontal: false, vertical: true)
                 footer
                 actions
@@ -31,10 +32,11 @@ struct MentorCard: View {
                     Text(mentor.displayName)
                         .font(.headline)
                     if mentor.isIdentityVerified {
-                        Image(systemName: "checkmark.seal.fill")
-                            .font(.footnote)
-                            .foregroundStyle(BrandTheme.jade)
-                            .accessibilityLabel("Identity verified")
+                    Image(systemName: "checkmark.seal.fill")
+                        .font(.footnote)
+                        .symbolEffect(.bounce)
+                        .foregroundStyle(BrandTheme.jade)
+                        .accessibilityLabel("Identity verified")
                     }
                 }
                 Text("\(mentor.ageRange) · \(mentor.district.cantoneseName) \(mentor.district.title)")
@@ -76,14 +78,15 @@ struct MentorCard: View {
                 .buttonStyle(.bordered)
                 .tint(BrandTheme.jadeDeep)
 
-                Button(action: onRequestConversation) {
-                    Label("Request", systemImage: "quote.bubble.fill")
-                        .font(.subheadline.weight(.semibold))
-                        .frame(maxWidth: .infinity)
-                        .padding(.vertical, 10)
-                }
-                .buttonStyle(.borderedProminent)
-                .tint(BrandTheme.jade)
+            Button(action: onRequestConversation) {
+                Label("Request", systemImage: "quote.bubble.fill")
+                    .font(.subheadline.weight(.semibold))
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 10)
+            }
+            .buttonStyle(.borderedProminent)
+            .tint(BrandTheme.jade)
+            .shadow(color: BrandTheme.jade.opacity(0.2), radius: 8, y: 4)
             }
 
             Button(action: onScheduleMeeting) {

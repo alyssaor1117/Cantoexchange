@@ -17,7 +17,13 @@ struct MatchingDashboardView: View {
         }
         .navigationTitle(store.activePerspective == .learner ? "Find a Mentor" : "Mentor Home")
         .navigationBarTitleDisplayMode(.inline)
-        .background(BrandTheme.cream)
+        .background(
+            LinearGradient(
+                colors: [BrandTheme.cream, Color(red: 1.00, green: 0.98, blue: 0.96)],
+                startPoint: .top,
+                endPoint: .bottom
+            )
+        )
         .sheet(item: $schedulerPartner) { partner in
             OfflineMeetingSchedulerView(partner: partner)
         }
